@@ -1,31 +1,33 @@
-[tool.poetry]
+[project]
 name = "evnex"
-version = "0.2.15"
+version = "0.4.2"
 description = "A Python wrapper for the EVNEX Cloud API"
-authors = ["Brian Thorne <brian@hardbyte.nz>"]
-
-[tool.poetry.urls]
-issues = "https://github.com/hardbyte/python-evnex/issues"
-
-
-[tool.poetry.dependencies]
-python = "^3.10"
-httpx = "^0.23.0"
-pycognito = "2022.8.0"
-pydantic = "^1.10"
-tenacity = "^8.1"
+authors = [{ name = "Brian Thorne", email = "brian@hardbyte.nz" }]
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+urls = { repository = "https://github.com/hardbyte/python-evnex", issues = "https://github.com/hardbyte/python-evnex/issues" }
 
 
-[tool.poetry.dev-dependencies]
-black = "^22.10"
-isort = "^5.10.1"
-pylint = "^2.15.3"
-pytest = "^7.1"
-pre-commit = "^2.20.0"
+dependencies = [
+    "httpx>=0.23",
+    "pycognito>=2023.5.0,<2025",
+    "boto3>=1.26,<2.0",
+    "pydantic>2.0.0,<3.0.0",
+    "tenacity>=8.1,<9.0",
+    "pydantic-settings>=2.2,<3.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "pytest>7.1,<9.0",
+    "pre-commit",
+]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.isort]
 profile = "black"

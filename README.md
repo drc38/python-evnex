@@ -23,7 +23,8 @@ pip install evnex
 
 ```python
 import asyncio
-from pydantic import BaseSettings, SecretStr
+from pydantic import SecretStr
+from pydantic_settings import BaseSettings
 from evnex.api import Evnex
 
 
@@ -68,11 +69,19 @@ python -m examples.get_charge_point_detail
 
 ### Making a new release
 
-What ends up on PyPi is what really matters. 
+What ends up on PyPi is what really matters. Creating a release in GitHub should 
+trigger a release workflow that builds and publishes to PyPi.
 
-Update the version in `pyproject.toml`, build and publish with poetry:
+To manually release, update the version in `pyproject.toml`, build and publish with uv:
 
 ```shell
-poetry build
-poetry publish
+uv build
+uv publish
+```
+
+Alternatively, you can use standard Python build tools:
+
+```shell
+python -m build
+python -m twine upload dist/*
 ```
